@@ -21,7 +21,7 @@ body {
     overflow-x: hidden;
 }
 
-/*body::before {
+body::before {
     content: '';
     position: absolute;
     top: 0;
@@ -34,7 +34,7 @@ body {
     filter: blur(10px) contrast(100%) saturate(300%);
     opacity: 0.3;
     z-index: -2;
-}*/
+}
 
 /*body::after {
     content: '';
@@ -88,12 +88,12 @@ body {
 }
 
 .main-content {
-    background-color: var(--frame-bg);
+    /*background-color: var(--frame-bg);*/
     padding: 3rem;
     padding-top: 5rem;
     /*border: 1px solid var(--y2k-blue);*/
     /*box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);*/
-    border-radius: 10% / 50%;
+    /*border-radius: 10% / 50%;*/
     z-index: 1;
     width: 90%;
     max-width: 600px;
