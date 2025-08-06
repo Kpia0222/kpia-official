@@ -21,7 +21,7 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
+/*body::before {
     content: '';
     position: absolute;
     top: 0;
@@ -34,7 +34,7 @@ body::before {
     filter: blur(10px) contrast(100%) saturate(300%);
     opacity: 0.3;
     z-index: -2;
-}
+}*/
 
 /*body::after {
     content: '';
