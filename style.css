@@ -130,6 +130,12 @@ body::before {
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
 }
 
+.link-icon-img {
+    width: 2rem; /* iタグのフォントサイズと同じサイズに設定 */
+    height: 2rem;
+    object-fit: contain; /* 画像の縦横比を維持して表示 */
+}
+
 .footer {
     margin-top: 2rem;
     z-index: 1;
