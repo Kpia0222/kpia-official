@@ -51,51 +51,50 @@ body::before {
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
+    padding-top: 100px; /* アイコンの分、上部に余白を追加 */
 }
 
 .artist-logo-container {
     width: 100px;
     height: 100px;
-    
-    position: absolute;
-    top: 100px; 
-    left: -width/6;
-    margin: 0 auto 2rem;
+    /* absolute指定を外し、flexboxで中央揃え */
+    margin: 0 auto;
     z-index: 2;
+    position: relative; /* 子要素のabsolute基準にするため */
+    margin-bottom: -50px; /* アイコンをヘッダーのテキストの上に被せる */
 }
 
 .artist-logo {
     width: 100%;
     height: 100%;
-    
     border-radius: 50%;
-    /*border: 3px solid var(--y2k-green);*/
+    /* border: 3px solid var(--y2k-green); */
     object-fit: cover;
-    /*box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);*/
+    /* box-shadow: 0 0 10px rgba(255, 0, 255, 0.8); */
     position: absolute;
-    top: 100px;
-    left: -width/6
-    transform: translate(-50%, -50%);
+    top: -50px; /* 親要素のartist-logo-containerを基準に上に配置 */
+    left: 50%; /* 親要素の幅の半分 */
+    transform: translateX(-50%); /* 自身の幅の半分を左に戻して中央揃え */
 }
 
 .header h1 {
-    font-family: 'Aria', Arial Black;
+    font-family: 'Bangers', Arial Black;
     font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     margin-top: 0;
     color: #ffffff;
-    /*text-shadow: 2px 2px 5px var(--y2k-green);*/
+    /* text-shadow: 2px 2px 5px var(--y2k-green); */
     z-index: 1;
 }
 
 .main-content {
-    /*background-color: var(--frame-bg);*/
+    /* background-color: var(--frame-bg); */
     padding: 3rem;
     padding-top: 5rem;
-    /*border: 1px solid var(--y2k-green);*/
-    /*box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);*/
-    /*border-radius: 10% / 50%;*/
+    /* border: 1px solid var(--y2k-green); */
+    /* box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); */
+    /* border-radius: 10% / 50%; */
     z-index: 1;
     width: 90%;
     max-width: 600px;
@@ -105,7 +104,7 @@ body::before {
 .profile-section {
     margin-bottom: 2rem;
     padding: 1rem;
-    /*border: 1px solid var(--y2k-green);*/
+    /* border: 1px solid var(--y2k-green); */
     border-radius: 10% / 50%;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     text-align: center;
@@ -127,8 +126,8 @@ body::before {
 
 .link-item {
     background-color: var(--bg-dark);
-    /*border: 2px solid var(--y2k-green);*/
-    /*box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);*/
+    /* border: 2px solid var(--y2k-green); */
+    /* box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); */
     padding: 1rem;
     text-decoration: none;
     color: var(--text-light);
