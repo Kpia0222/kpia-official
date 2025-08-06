@@ -63,22 +63,26 @@ body::after {
 
 .link-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* リンクを横並びにする */
+    justify-content: center; /* 横方向中央揃え */
     gap: 1.5rem;
 }
 
 .link-item {
-    display: block;
-    background: transparent; /* 背景を透明にする */
+    background: transparent;
     border: 2px solid var(--y2k-pink);
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
-    padding: 1rem 2rem;
+    padding: 1rem; /* パディングを均等に */
     text-decoration: none;
     color: var(--text-light);
-    font-size: 1.2rem;
-    text-transform: uppercase;
+    font-size: 2rem; /* アイコンサイズを大きくする */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 4px;
+    border-radius: 50%; /* アイコンを丸くする */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* アイコンの幅と高さを指定 */
+    height: 60px;
 }
 
 .link-item:hover {
