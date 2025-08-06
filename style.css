@@ -117,7 +117,7 @@ body::after {
     padding: 1rem; /* パディングを均等に */
     text-decoration: none;
     color: var(--text-light);
-    font-size: 2rem; /* アイコンサイズを大きくする */
+    font-size: 1rem; /* アイコンサイズを大きくする */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 50%; /* アイコンを丸くする */
     display: flex;
