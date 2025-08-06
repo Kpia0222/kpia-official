@@ -4,6 +4,7 @@
     --y2k-green: #00ff00;
     --bg-dark: #1a1a1a;
     --text-light: #f0f0f0;
+    --frame-bg: #222; /* リンクを載せるための少し明るい黒 */
 }
 
 body {
@@ -18,6 +19,71 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative; /* 背景の基準点とする */
+}
+
+/* --- 背景の設定 --- */
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('kpia_live_01.jpg'); /* kpia_live_01という画像の名前に変更 */
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) contrast(200%) saturate(150%); /* グリッチ風のぼかし効果 */
+    opacity: 0.3; /* 背景の透明度を調整 */
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 50vh; /* 画面の真ん中より下を黒くする */
+    left: 0;
+    width: 100%;
+    height: 50vh;
+    background-color: var(--bg-dark);
+    z-index: -1;
+}
+
+/* --- 中間層のフレーム --- */
+
+.main-content {
+    background-color: var(--frame-bg);
+    padding: 3rem;
+    border: 1px solid var(--y2k-blue);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    border-radius: 8px;
+    z-index: 1; /* フレームが背景より前面に来るように */
+}
+
+.link-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.link-item {
+    display: block;
+    background: transparent; /* 背景を透明にする */
+    border: 2px solid var(--y2k-pink);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
+}
+
+.link-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
 }
 
 .header h1 {
@@ -28,49 +94,12 @@ body {
     margin-bottom: 2rem;
     color: var(--y2k-pink);
     text-shadow: 2px 2px 5px var(--y2k-blue);
-}
-
-.main-content {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.link-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 80%;
-    max-width: 500px;
-}
-
-.link-item {
-    display: block;
-    background: linear-gradient(45deg, var(--y2k-blue), var(--y2k-pink));
-    border: 3px solid var(--y2k-green);
-    box-shadow: 0 0 15px var(--y2k-green), inset 0 0 10px var(--y2k-green);
-    padding: 1.5rem;
-    text-decoration: none;
-    color: var(--text-light);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-}
-
-.link-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--y2k-green), inset 0 0 15px var(--y2k-green);
-}
-
-.link-text {
-    font-weight: bold;
+    z-index: 1;
 }
 
 .footer {
     margin-top: 2rem;
+    z-index: 1;
 }
 
 .footer p {
