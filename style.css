@@ -87,12 +87,12 @@ body::after {
 }
 
 .header h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bangers', cursive; /* Bangersフォントを適用 */
     font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     margin-bottom: 2rem;
-    color: var(--y2k-pink);
+    color: #ffffff; /* フォントを白色に */
     text-shadow: 2px 2px 5px var(--y2k-blue);
     z-index: 1;
 }
