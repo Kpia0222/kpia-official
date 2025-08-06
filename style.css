@@ -31,7 +31,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('kpia_live_01.png'); /* 画像の名前に変更 */
+    background-image: url('kpia_live_00.png'); /* 画像の名前に変更 */
     background-size: cover;
     background-position: center;
     filter: blur(10px) contrast(200%) saturate(150%); /* グリッチ風のぼかし効果 */
@@ -70,6 +70,7 @@ body::after {
 .artist-logo {
     width: 100%;
     height: 100%;
+    background-image: url('kpia_logo_00.png'); /* ここに画像ファイル名を指定 */
     border-radius: 50%; /* 円形にする */
     border: 3px solid var(--y2k-pink);
     object-fit: cover;
