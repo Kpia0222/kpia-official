@@ -14,7 +14,7 @@ body {
     /*display: flex;*/ /*下に変更*/
     display: grid;
     flex-direction: column;
-    min-height: 10px;
+    min-height: 100px;
     text-align: center;
     position: relative;
     overflow-x: hidden;
