@@ -63,7 +63,7 @@ body::after {
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 0 auto;
+    margin: 0 auto 2rem; /* 下マージンを追加してテキストとの間隔を作る */
     z-index: 2;
 }
 
@@ -77,7 +77,7 @@ body::after {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /* 上方向に半分移動させて食い込ませる */
 }
 
 .header h1 {
@@ -95,7 +95,7 @@ body::after {
 .main-content {
     background-color: var(--frame-bg);
     padding: 3rem;
-    padding-top: 5rem;
+    padding-top: 5rem; /* ロゴが食い込むスペースを確保 */
     border: 1px solid var(--y2k-blue);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     border-radius: 8px;
