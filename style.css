@@ -1,63 +1,54 @@
-/* --- カスタムプロパティ（変数の定義）--- */
-/* 色やサイズなどを変数として定義しておくと、一括で変更できて便利です。 */
 :root {
     --y2k-blue: #00ffff;
     --y2k-pink: #ff00ff;
     --y2k-green: #00ff00;
-    --y2k-white: #000000;
-    --bg-dark: #1a1a1a; /* 背景色 */
-    --text-light: #f0f0f0; /* テキスト色 */
-    --frame-bg: #222; /* リンクを載せるための少し明るい黒 */
+    --bg-dark: #1a1a1a;
+    --text-light: #f0f0f0;
+    --frame-bg: #222;
 }
 
-/* --- 全体の共通スタイル --- */
 body {
-    background-color: var(--bg-dark); /* 背景色をカスタムプロパティで指定 */
-    color: var(--text-light); /* テキスト色をカスタムプロパティで指定 */
-    font-family: 'Aria', Arial Black; /* フォントを設定 */
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
-    display: flex; /* flexboxを使って要素を縦に並べる */
+    display: flex;
     flex-direction: column;
-    min-height: 100vh; /* ページの最小の高さを画面の高さに設定 */
-    justify-content: center; /* 縦方向の中央寄せ */
-    align-items: center; /* 横方向の中央寄せ */
+    min-height: 100vh;
     text-align: center;
     position: relative;
-    overflow: hidden; /* 背景がはみ出ないように */
+    overflow-x: hidden;
 }
 
-/* --- 背景の設定 --- */
-/* ::beforeと::after擬似要素を使って、背景に特殊な効果を加える */
 body::before {
     content: '';
-    position: absolute; /* 親要素（body）を基準に配置 */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('kpia_live_00.png'); /* 背景画像ファイル名 */
-    background-size: cover; /* 背景画像を画面全体に広げる */
-    background-position: center; /* 画像を中央に配置 */
-    filter: blur(10px) contrast(10%) saturate(150%); /* グリッチ風のぼかし効果 */
-    opacity: 0.5; /* 背景の透明度を調整 */
-    z-index: -2; /* 他の要素より奥に配置 */
+    background-image: url('kpia_live_00.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) contrast(200%) saturate(150%);
+    opacity: 0.3;
+    z-index: -2;
 }
 
 body::after {
     content: '';
     position: absolute;
-    top: 50vh; /* 画面の真ん中より下を黒くする */
+    top: 50vh;
     left: 0;
     width: 100%;
     height: 50vh;
-    background-color: var(--bg-dark); /* 背景色を設定 */
-    z-index: -1; /* body::beforeより手前に、他の要素より奥に配置 */
+    background-color: var(--bg-dark);
+    z-index: -1;
 }
 
-/* --- ヘッダーとロゴ --- */
 .header {
-    z-index: 1; /* 他の背景要素より手前に配置 */
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,78 +57,98 @@ body::after {
 
 .artist-logo-container {
     position: relative;
-    width: 100px; /* ロゴコンテナの幅 */
-    height: 100px; /* ロゴコンテナの高さ */
+    width: 100px;
+    height: 100px;
     margin: 0 auto 2rem;
-    z-index: 2; /* 最前面に配置 */
+    z-index: 2;
 }
 
 .artist-logo {
     width: 100%;
     height: 100%;
-    border-radius: 50%; /* 画像を丸くする */
-    border: 3px solid var(--y2k-white); /* 枠線の色と太さ */
+    border-radius: 50%;
+    border: 3px solid var(--y2k-pink);
     object-fit: cover;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8); /* ボックスの影（光る効果） */
-    position: absolute; /* 絶対位置指定でロゴを配置 */
-    top: 100;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+    position: absolute;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%); /* 上方向に半分移動させてフレームに食い込ませる */
+    transform: translate(-50%, -50%);
 }
 
 .header h1 {
-    font-family: 'Aria', Arial Black; /* 見出しのフォント */
-    font-size: 3rem; /* 見出しのサイズ */
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     margin-top: 0;
     color: #ffffff;
-    text-shadow: 2px 2px 5px var(--y2k-white); /* テキストの影（光る効果） */
+    text-shadow: 2px 2px 5px var(--y2k-blue);
     z-index: 1;
 }
 
-/* --- 中間層のフレーム --- */
 .main-content {
     background-color: var(--frame-bg);
     padding: 3rem;
-    padding-top: 5rem; /* ロゴが食い込むスペースを確保 */
+    padding-top: 5rem;
     border: 1px solid var(--y2k-blue);
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-    border-radius: 8px; /* 角を丸くする */
+    border-radius: 8px;
     z-index: 1;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto; /* 中央寄せ */
 }
 
-/* --- リンク --- */
+.profile-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--y2k-green);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    text-align: center;
+}
+
+.profile-section p {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6;
+}
+
 .link-section {
-    display: flex; /* flexboxを使ってリンクを横に並べる */
-    flex-direction: column; /* 縦並び */
-    justify-content: start; /* 横方向の中央寄せ */
-    gap: 1.0rem; /* リンク間のスペース */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .link-item {
-    background: transparent;
+    background-color: var(--bg-dark);
     border: 2px solid var(--y2k-pink);
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
     padding: 1rem;
-    text-decoration: none; /* リンクの下線を消す */
+    text-decoration: none;
     color: var(--text-light);
     font-size: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバー時のアニメーション効果 */
-    border-radius: 50%; /* 丸い形にする */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
     display: flex;
-    align-items: center; /* アイコンを垂直方向に中央寄せ */
-    justify-content: center; /* アイコンを水平方向に中央寄せ */
-    width: 60px; /* アイコンの幅 */
-    height: 60px; /* アイコンの高さ */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 250px;
+}
+
+.link-item i {
+    font-size: 2rem;
 }
 
 .link-item:hover {
-    transform: scale(1.05); /* ホバー時に少し拡大する */
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8); /* ホバー時に影を強くする */
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
 }
 
-/* --- フッター --- */
 .footer {
     margin-top: 2rem;
     z-index: 1;
