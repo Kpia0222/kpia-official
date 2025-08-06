@@ -49,7 +49,7 @@ body::before {
     height: 200px;
     /*margin: 0 auto;*/
     z-index: 2;
-    position: relative;
+    position: static;
     /*margin-bottom: -50px;*/ /*下の間隔*/
 }
 
@@ -58,7 +58,7 @@ body::before {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    position: absolute;
+    position: static;
     /*top: 200px;*/
     /*left: 50%;*/
     /*transform: translateX(-50%);*/
