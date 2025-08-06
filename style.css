@@ -11,9 +11,10 @@ body {
     font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
-    display: flex;
+    /*display: flex;*/ /*下に変更*/
+    display: grid;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 10px;
     text-align: center;
     position: relative;
     overflow-x: hidden;
