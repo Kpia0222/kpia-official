@@ -40,16 +40,16 @@ body::before {
     flex-direction: column;
     align-items: center;
     margin-bottom: 0rem;
-    padding-top: 50px;
+    padding-top: 0px;
 }
 
 .artist-logo-container {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
     z-index: 2;
     position: relative;
-    margin-bottom: -50px;
+    /*margin-bottom: -50px;*/ /*下の間隔*/
 }
 
 .artist-logo {
@@ -58,9 +58,9 @@ body::before {
     border-radius: 50%;
     object-fit: cover;
     position: absolute;
-    top: -50px;
+    top: 200px;
     left: 50%;
-    transform: translateX(-50%);
+    /*transform: translateX(-50%);*/
 }
 
 .header h1 {
