@@ -34,7 +34,7 @@ body::before {
     background-image: url('kpia_live_01.png'); /* kpia_live_01という画像の名前に変更 */
     background-size: cover;
     background-position: center;
-    filter: blur(10px) contrast(200%) saturate(150%); /* グリッチ風のぼかし効果 */
+    filter: blur(50px) contrast(200%) saturate(150%); /* グリッチ風のぼかし効果 */
     opacity: 0.3; /* 背景の透明度を調整 */
     z-index: -2;
 }
