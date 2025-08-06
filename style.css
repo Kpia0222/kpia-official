@@ -1,110 +1,79 @@
-
-/* Reset & base */
-body, h1, h2, p, a {
-  margin: 0;
-  padding: 0;
+:root {
+    --y2k-blue: #00ffff;
+    --y2k-pink: #ff00ff;
+    --y2k-green: #00ff00;
+    --bg-dark: #1a1a1a;
+    --text-light: #f0f0f0;
 }
 
 body {
-  font-family: 'Press Start 2P', cursive;
-  background-color: #fbe9f0;
-  color: #333;
-  text-align: center;
-  overflow-x: hidden;
-  position: relative;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* 背景アイコンをぼかして配置 */
-.background-blur {
-  background: url('kpia_icon.jpg') center center / cover no-repeat;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: blur(30px) brightness(1.2);
-  z-index: -1;
-  opacity: 0.25;
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 2rem;
+    color: var(--y2k-pink);
+    text-shadow: 2px 2px 5px var(--y2k-blue);
 }
 
-/* ヘッダー */
-header {
-  padding: 3em 1em 2em;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: 2px dotted #ff99cc;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-h1 {
-  font-size: 2em;
-  color: #ff33cc;
-  margin-top: 0.5em;
+.link-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 80%;
+    max-width: 500px;
 }
 
-.profile-icon {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid #ffccff;
-  object-fit: cover;
+.link-item {
+    display: block;
+    background: linear-gradient(45deg, var(--y2k-blue), var(--y2k-pink));
+    border: 3px solid var(--y2k-green);
+    box-shadow: 0 0 15px var(--y2k-green), inset 0 0 10px var(--y2k-green);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }
 
-.profile-text {
-  font-size: 0.7em;
-  margin-top: 1em;
-  line-height: 1.8;
+.link-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--y2k-green), inset 0 0 15px var(--y2k-green);
 }
 
-/* メインセクション */
-main {
-  padding: 2em 1em;
+.link-text {
+    font-weight: bold;
 }
 
-/* セクションカード */
-.card {
-  background-color: #ffffffcc;
-  border: 2px solid #ffccff;
-  border-radius: 1em;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  margin: 2em auto;
-  padding: 1.5em;
-  max-width: 700px;
+.footer {
+    margin-top: 2rem;
 }
 
-/* SNSアイコン */
-.sns-icons {
-  margin-top: 1em;
-  font-size: 2em;
-}
-
-.sns-icons a {
-  margin: 0 15px;
-  color: #ff66cc;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.sns-icons a:hover {
-  transform: scale(1.3);
-  color: #ff0099;
-}
-
-/* YouTube動画 */
-.video-wrapper {
-  margin-top: 1em;
-}
-
-.video-wrapper iframe {
-  width: 100%;
-  max-width: 560px;
-  height: 315px;
-  border: none;
-}
-
-/* フッター */
-footer {
-  margin-top: 3em;
-  padding: 1em;
-  background-color: rgba(255, 255, 255, 0.7);
-  font-size: 0.6em;
-  color: #666;
+.footer p {
+    font-size: 0.8rem;
+    color: #888;
 }
