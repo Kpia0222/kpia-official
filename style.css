@@ -4,6 +4,7 @@
     --y2k-blue: #00ffff;
     --y2k-pink: #ff00ff;
     --y2k-green: #00ff00;
+    --y2k-white: #000000;
     --bg-dark: #1a1a1a; /* 背景色 */
     --text-light: #f0f0f0; /* テキスト色 */
     --frame-bg: #222; /* リンクを載せるための少し明るい黒 */
@@ -38,8 +39,8 @@ body::before {
     background-image: url('kpia_live_00.png'); /* 背景画像ファイル名 */
     background-size: cover; /* 背景画像を画面全体に広げる */
     background-position: center; /* 画像を中央に配置 */
-    filter: blur(10px) contrast(200%) saturate(150%); /* グリッチ風のぼかし効果 */
-    opacity: 0.3; /* 背景の透明度を調整 */
+    filter: blur(10px) contrast(10%) saturate(150%); /* グリッチ風のぼかし効果 */
+    opacity: 0.5; /* 背景の透明度を調整 */
     z-index: -2; /* 他の要素より奥に配置 */
 }
 
@@ -75,23 +76,23 @@ body::after {
     width: 100%;
     height: 100%;
     border-radius: 50%; /* 画像を丸くする */
-    border: 3px solid var(--y2k-pink); /* 枠線の色と太さ */
+    border: 3px solid var(--y2k-white); /* 枠線の色と太さ */
     object-fit: cover;
     box-shadow: 0 0 10px rgba(255, 0, 255, 0.8); /* ボックスの影（光る効果） */
     position: absolute; /* 絶対位置指定でロゴを配置 */
-    top: 0;
+    top: 100;
     left: 50%;
     transform: translate(-50%, -50%); /* 上方向に半分移動させてフレームに食い込ませる */
 }
 
 .header h1 {
-    font-family: 'Bangers', cursive; /* 見出しのフォント */
+    font-family: 'Aria', Arial Black; /* 見出しのフォント */
     font-size: 3rem; /* 見出しのサイズ */
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     margin-top: 0;
     color: #ffffff;
-    text-shadow: 2px 2px 5px var(--y2k-blue); /* テキストの影（光る効果） */
+    text-shadow: 2px 2px 5px var(--y2k-white); /* テキストの影（光る効果） */
     z-index: 1;
 }
 
@@ -109,9 +110,9 @@ body::after {
 /* --- リンク --- */
 .link-section {
     display: flex; /* flexboxを使ってリンクを横に並べる */
-    flex-direction: row;
-    justify-content: center; /* 横方向の中央寄せ */
-    gap: 1.5rem; /* リンク間のスペース */
+    flex-direction: column; /* 縦並び */
+    justify-content: start; /* 横方向の中央寄せ */
+    gap: 1.0rem; /* リンク間のスペース */
 }
 
 .link-item {
