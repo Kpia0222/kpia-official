@@ -54,7 +54,7 @@ body::before {
 }
 
 .artist-logo-container {
-    position: relative;
+    position: absolute;
     top: 100px; 
     left: 50%;
     width: 100px;
