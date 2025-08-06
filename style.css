@@ -39,8 +39,8 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem; /* プロフィールセクションとの間隔 */
-    padding-top: 50px; /* アイコン分のスペースを確保 */
+    margin-bottom: 2rem;
+    padding-top: 50px;
 }
 
 .artist-logo-container {
@@ -49,7 +49,7 @@ body::before {
     margin: 0 auto;
     z-index: 2;
     position: relative;
-    margin-bottom: -50px; /* アイコンをヘッダーのテキストの上に被せる */
+    margin-bottom: -50px;
 }
 
 .artist-logo {
@@ -58,13 +58,13 @@ body::before {
     border-radius: 50%;
     object-fit: cover;
     position: absolute;
-    top: -50px; /* 親要素を基準に上に配置 */
+    top: -50px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .header h1 {
-    font-family: 'Bangers', Arial Black;
+    font-family: 'Roboto Mono', monospace; /* フォントをリンクセクションと同じものに変更 */
     font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
@@ -75,7 +75,7 @@ body::before {
 
 .main-content {
     padding: 3rem;
-    padding-top: 0; /* ヘッダーとの間隔はheaderのmargin-bottomで調整するため、0にする */
+    padding-top: 0;
     z-index: 1;
     width: 90%;
     max-width: 600px;
@@ -83,10 +83,11 @@ body::before {
 }
 
 .profile-section {
-    margin-bottom: 2rem; /* リンクセクションとの間隔 */
+    margin-bottom: 2rem;
     padding: 1rem;
+    /* border: 1px solid var(--y2k-green); */ /* ここをコメントアウト */
     border-radius: 10% / 50%;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); */ /* ここをコメントアウト */
     text-align: center;
 }
 
