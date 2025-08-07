@@ -1,30 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const iconContainer = document.querySelector('.kpia-icon-container');
-    const waveArea = document.querySelector('.wave-effect-area');
-    const waveRadius = 50; // 波紋エフェクトが効く半径
-
-    iconContainer.addEventListener('mousemove', (e) => {
-        const rect = iconContainer.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const dx = mouseX - centerX;
-        const dy = mouseY - centerY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < waveRadius) {
-            const scale = 1 + (1 - dist / waveRadius) * 0.1; // 0.1は歪みの強さ
-            waveArea.style.transform = `scale(${scale})`;
-            waveArea.style.transformOrigin = `${mouseX}px ${mouseY}px`;
+    // スクロール時のヘッダーアニメーション
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(13, 13, 13, 0.9)';
         } else {
-            waveArea.style.transform = 'scale(1.0)';
+            header.style.backgroundColor = 'rgba(13, 13, 13, 0.8)';
         }
     });
 
-    iconContainer.addEventListener('mouseleave', () => {
-        waveArea.style.transform = 'scale(1.0)';
+    // アルバムアイテムのランダムグリッチ効果
+    const albumItems = document.querySelectorAll('.album-item');
+    albumItems.forEach(item => {
+        const cover = item.querySelector('.album-cover');
+        
+        let intervalId;
+        
+        item.addEventListener('mouseover', () => {
+            // ホバー時にグリッチアニメーションを開始
+            intervalId = setInterval(() => {
+                const shiftX = (Math.random() - 0.5) * 10;
+                const shiftY = (Math.random() - 0.5) * 10;
+                const hueRotate = Math.random() * 360;
+
+                cover.style.transform = `translate(${shiftX}px, ${shiftY}px) scale(1.05)`;
+                cover.style.filter = `hue-rotate(${hueRotate}deg)`;
+            }, 50); // 50msごとにグリッチを更新
+        });
+
+        item.addEventListener('mouseout', () => {
+            // ホバーが外れたらグリッチを停止
+            clearInterval(intervalId);
+            cover.style.transform = 'scale(1)';
+            cover.style.filter = 'none';
+        });
     });
+
 });
