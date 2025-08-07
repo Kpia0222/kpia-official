@@ -38,16 +38,16 @@ body::before {
     z-index: -2;
 }
 
-/* RGBシフトノイズをかける要素の基本スタイル */
 .glitch-part {
     position: absolute;
     background-image: url('kpia_live_00.png'); /* 背景画像を継承 */
     background-size: cover;
-    background-position: center;
+    background-repeat: no-repeat;
+    background-position: 0 0;
     opacity: 0.8;
-    z-index: 10; /* 他のコンテンツより前面に */
+    z-index: 10;
     animation: rgb-shift-anim 0.1s infinite steps(2, jump-none);
-    mix-blend-mode: screen; /* 重なった部分を明るく合成 */
+    mix-blend-mode: screen;
 }
 
 @keyframes rgb-shift-anim {
