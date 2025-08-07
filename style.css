@@ -50,8 +50,8 @@ body::before {
 }
 
 .artist-logo-container {
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     z-index: 2;
     margin-bottom: 0;
 }
