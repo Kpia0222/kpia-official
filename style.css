@@ -24,7 +24,7 @@ body {
 /* 背景画像 */
 body::before {
     content: '';
-    position: fixed; /* 背景画像を固定 */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -35,57 +35,9 @@ body::before {
     filter: blur(10px) contrast(100%) saturate(300%);
     opacity: 0.3;
     z-index: -2;
-    animation: background-glitch 5s infinite linear alternate;
 }
 
-@keyframes background-glitch {
-    0% {
-        filter: hue-rotate(0deg) blur(10px) contrast(100%) saturate(300%);
-        transform: scale(1);
-    }
-    10% {
-        filter: hue-rotate(30deg) blur(12px) contrast(120%) saturate(350%);
-        transform: scale(1.01);
-    }
-    20% {
-        filter: hue-rotate(60deg) blur(8px) contrast(90%) saturate(280%);
-        transform: scale(1);
-    }
-    30% {
-        filter: hue-rotate(90deg) blur(11px) contrast(110%) saturate(320%);
-        transform: scale(1.02);
-    }
-    40% {
-        filter: hue-rotate(120deg) blur(9px) contrast(105%) saturate(310%);
-        transform: scale(1);
-    }
-    50% {
-        filter: hue-rotate(150deg) blur(13px) contrast(115%) saturate(340%);
-        transform: scale(1.01);
-    }
-    60% {
-        filter: hue-rotate(180deg) blur(10px) contrast(100%) saturate(300%);
-        transform: scale(1);
-    }
-    70% {
-        filter: hue-rotate(210deg) blur(12px) contrast(120%) saturate(350%);
-        transform: scale(1.02);
-    }
-    80% {
-        filter: hue-rotate(240deg) blur(8px) contrast(95%) saturate(290%);
-        transform: scale(1);
-    }
-    90% {
-        filter: hue-rotate(270deg) blur(11px) contrast(110%) saturate(330%);
-        transform: scale(1.01);
-    }
-    100% {
-        filter: hue-rotate(300deg) blur(10px) contrast(100%) saturate(300%);
-        transform: scale(1);
-    }
-}
-
-/* ブラウン管ノイズ */
+/* ブラウン管 */
 body::after {
     content: '';
     position: fixed;
@@ -101,7 +53,7 @@ body::after {
         transparent 2px
     );
     animation: scanlines 5s infinite linear;
-    pointer-events: none; /* マウスイベントを透過させる */
+    pointer-events: none;
     z-index: -1;
 }
 
