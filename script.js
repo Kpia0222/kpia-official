@@ -51,6 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(glitchInterval);
             }, 300); // 300ms後にグリッチを停止
         }
-    }, 10000); // 10秒ごとに判定
+    }, 500); // 10秒ごとに判定
     // --- ここまで修正 ---
 });
