@@ -39,7 +39,7 @@ body::before {
 }
 
 .glitch-on {
-    filter: grayscale(1) hue-rotate(360deg);
+    /* filter: grayscale(1) hue-rotate(360deg);  この行を削除 */
 }
 
 .glitch-on::before {
