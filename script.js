@@ -9,15 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- ここから追加・修正 ---
+    // --- ここから修正 ---
     function activateGlitch() {
-        // bodyにクラスを追加してノイズを発生させる
+        // bodyにクラスを追加してRGBシフトノイズを発生
         document.body.classList.add('glitch-on');
         
-        // 0.2秒後にクラスを削除してノイズを停止
+        // ノイズの持続時間はランダムに設定 (今回は0.1秒から0.5秒)
+        const glitchDuration = Math.random() * 400 + 100;
+        
         setTimeout(() => {
             document.body.classList.remove('glitch-on');
-        }, 200);
+        }, glitchDuration);
 
         // 次のグリッチまでのランダムな時間を設定 (0.5秒～5秒)
         const nextGlitchTime = (Math.random() * 4.5 + 0.5) * 1000;
@@ -26,5 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 最初のグリッチを開始
     activateGlitch();
-    // --- ここまで追加・修正 ---
+    // --- ここまで修正 ---
 });
