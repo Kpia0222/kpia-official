@@ -72,7 +72,7 @@ body::before {
     border-radius: 8px;
     margin-bottom: 2rem;
     
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 .profile-section {
