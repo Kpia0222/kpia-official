@@ -63,7 +63,7 @@ body::before {
 .name-section {
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
-    line-height: 0;
+    line-height: 3rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
 
