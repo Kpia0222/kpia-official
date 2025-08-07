@@ -37,6 +37,7 @@ body::before {
     z-index: -2;
 }
 
+/* ブラウン管ノイズ */
 body::after {
     content: '';
     position: fixed;
@@ -51,19 +52,13 @@ body::after {
         transparent 1px,
         transparent 2px
     );
-    animation: scanlines 5s infinite linear;
     pointer-events: none;
     z-index: -1;
     /* 新しいアニメーションを追加 */
     animation: crt-glitch 10s infinite;
 }
 
-@keyframes scanlines {
-    to {
-        background-position: 0 100%;
-    }
-}
-
+/* 新しいアニメーションキーフレーム */
 @keyframes crt-glitch {
     0%, 95% {
         opacity: 0; /* 通常時は非表示 */
@@ -73,30 +68,6 @@ body::after {
         opacity: 0.8; /* 最後の0.1%で表示 */
         filter: grayscale(1);
     }
-}
-
-/* 画像ずらしグリッチ用のコンテナ */
-.glitch-noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* 背景レイヤーの上、コンテンツの下 */
-    pointer-events: none;
-}
-
-/* グリッチブロックのスタイル */
-.glitch-block {
-    position: absolute;
-    overflow: hidden;
-    opacity: 0.8;
-    animation: glitch-fade 0.1s forwards;
-}
-
-@keyframes glitch-fade {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.1); opacity: 0; }
 }
 
 /* ヘッダー */
