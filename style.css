@@ -61,18 +61,18 @@ body::before {
 }
 
 .name-section {
-    font-family: 'Playfair Display', serif; /* pタグと同じフォント */
-    line-height: 1.6; /* pタグと同じ行の高さ */
-    margin: 0; /* pタグと同じマージン */
-    
-    font-size: 12rem; /* 既存のフォントサイズを維持 */
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1.6;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-    padding: 0.5rem 1.5rem;
+
     border: 2px solid var(--text-light);
-    display: inline-block;
+    padding: 0.5rem 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    
+    display: inline-block;
 }
 
 .profile-section {
