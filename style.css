@@ -70,6 +70,11 @@ body::after {
     }
 }
 
+/* style.cssに追記 */
+.glitch-on::after {
+    animation: crt-glitch 0.3s forwards; /* ノイズの持続時間を短く設定 */
+}
+
 /* ヘッダー */
 .header {
     display: flex;
