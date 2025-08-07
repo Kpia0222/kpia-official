@@ -37,7 +37,6 @@ body::before {
     z-index: -2;
 }
 
-/* ブラウン管 */
 body::after {
     content: '';
     position: fixed;
@@ -55,11 +54,24 @@ body::after {
     animation: scanlines 5s infinite linear;
     pointer-events: none;
     z-index: -1;
+    /* 新しいアニメーションを追加 */
+    animation: crt-glitch 10s infinite;
 }
 
 @keyframes scanlines {
     to {
         background-position: 0 100%;
+    }
+}
+
+@keyframes crt-glitch {
+    0%, 95% {
+        opacity: 0; /* 通常時は非表示 */
+        filter: grayscale(0);
+    }
+    95.1%, 100% {
+        opacity: 0.8; /* 最後の0.1%で表示 */
+        filter: grayscale(1);
     }
 }
 
