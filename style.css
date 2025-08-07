@@ -56,7 +56,6 @@ body::before {
     position: fixed;
     bottom: 20px; /* 画面下からの距離 */
     left: 20px; /* 画面左からの距離 */
-    z-index: 100; /* 他のコンテンツの上に表示 */
     z-index: 2;
     margin-bottom: 0;
 }
