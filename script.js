@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // スクロール時のヘッダーアニメーション
+    // スクロール時のヘッダーアニメーション (既存のコード)
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.style.backgroundColor = 'rgba(26, 26, 26, 0.8)';
         }
+    });
 
     const glitchContainer = document.createElement('div');
     glitchContainer.className = 'glitch-noise';
@@ -16,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const glitchBlock = document.createElement('div');
         glitchBlock.className = 'glitch-block';
         
-        const size = Math.random() * 200 + 50; // 50pxから250pxのランダムなサイズ
+        const size = Math.random() * 200 + 50;
         const top = Math.random() * (window.innerHeight - size);
         const left = Math.random() * (window.innerWidth - size);
-        const shift = Math.random() * 20 - 10; // -10pxから10pxのランダムなズレ
+        const shift = Math.random() * 20 - 10;
 
         glitchBlock.style.width = `${size}px`;
         glitchBlock.style.height = `${size}px`;
@@ -32,36 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         glitchContainer.appendChild(glitchBlock);
         
-        // 数ミリ秒後にブロックを消去
         setTimeout(() => {
             glitchBlock.remove();
-        }, 100); // 100ms後に消える
+        }, 100);
     }
 
-    // 0.5秒ごとに新しいグリッチブロックを生成
-    setInterval(createGlitch, 2000);
-    });
+    setInterval(createGlitch, 500);
 
-    // アルバムアイテムのランダムグリッチ効果（今回は不要なのでコメントアウト）
-    /*
-    const albumItems = document.querySelectorAll('.album-item');
-    albumItems.forEach(item => {
-        const cover = item.querySelector('.album-cover');
-        let intervalId;
-        item.addEventListener('mouseover', () => {
-            intervalId = setInterval(() => {
-                const shiftX = (Math.random() - 0.5) * 10;
-                const shiftY = (Math.random() - 0.5) * 10;
-                const hueRotate = Math.random() * 360;
-                cover.style.transform = `translate(${shiftX}px, ${shiftY}px) scale(1.05)`;
-                cover.style.filter = `hue-rotate(${hueRotate}deg)`;
-            }, 50);
-        });
-        item.addEventListener('mouseout', () => {
-            clearInterval(intervalId);
-            cover.style.transform = 'scale(1)';
-            cover.style.filter = 'none';
-        });
-    });
-    */
 });
