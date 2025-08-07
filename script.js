@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 0.5秒ごとに新しいグリッチブロックを生成
-    setInterval(createGlitch, 500);
+    setInterval(createGlitch, 2000);
     });
 
     // アルバムアイテムのランダムグリッチ効果（今回は不要なのでコメントアウト）
