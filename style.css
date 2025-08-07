@@ -61,7 +61,7 @@ body::before {
 }
 
 .name-section {
-    top: 100px
+    top: 100px;
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
     line-height: 3rem;
