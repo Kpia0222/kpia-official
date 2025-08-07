@@ -43,22 +43,6 @@ body::before {
     margin: 0 auto;
 }
 
-.name-content {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    margin: 0;
-    z-index: 1;
-    
-    /* ここから枠線のCSSを追加 */
-    border: 2px solid var(--text-light); /* 2pxの白い実線 */
-    display: inline-block; /* コンテンツの幅に合わせて要素の幅を調整 */
-    padding: 0.5rem 1.5rem; /* 枠と文字の間に余白を追加 */
-    border-radius: 8px; /* 角を丸くする */
-    margin-bottom: 2rem; /* プロフィールセクションとの間に間隔をあける */
-}
-
 .artist-logo-container {
     width: 120px;
     height: 120px;
@@ -74,6 +58,22 @@ body::before {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.name-content p {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin: 0;
+    z-index: 1;
+    
+    /* ここから枠線のCSSを追加 */
+    border: 2px solid var(--text-light); /* 2pxの白い実線 */
+    display: inline-block; /* コンテンツの幅に合わせて要素の幅を調整 */
+    padding: 0.5rem 1.5rem; /* 枠と文字の間に余白を追加 */
+    border-radius: 8px; /* 角を丸くする */
+    margin-bottom: 2rem; /* プロフィールセクションとの間に間隔をあける */
 }
 
 .profile-section {
