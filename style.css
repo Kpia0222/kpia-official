@@ -40,8 +40,9 @@ body {
     z-index: -1;
 }
 
-/* 背景画像アニメーション: フェードイン */
+/* 背景画像アニメーション: デフォルト状態 */
 #background-container[data-bg-mode="fade"] {
+    filter: blur(10px) contrast(100%) saturate(300%);
     opacity: 0;
     animation: fadeIn 1s forwards;
 }
@@ -58,7 +59,7 @@ body {
 }
 @keyframes mosaicToNormal {
     to {
-        filter: blur(0) saturate(100%);
+        filter: blur(10px) contrast(100%) saturate(300%);
         transform: scale(1);
     }
 }
@@ -72,35 +73,38 @@ body {
     width: var(--logo-size);
     height: var(--logo-size);
     opacity: 0;
-    animation: iconFadeIn 1s ease-out 2s forwards; /* 2秒後に1秒かけてフェードイン */
+    animation: iconFadeIn 1s ease-out 2s forwards;
     z-index: 10;
 }
 @keyframes iconFadeIn {
     to { opacity: 1; }
 }
-
+.kpia-icon-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--logo-size);
+    height: var(--logo-size);
+    z-index: 10;
+}
 .kpia-icon {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.2s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
 }
 
-.kpia-icon-container:hover .kpia-icon {
-    animation: waveEffect 1.5s infinite;
-}
-@keyframes waveEffect {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* SNSリンク集 (右上に固定) */
+/* SNSリンク集 (左上に固定、横並び) */
 .sns-links {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 横並びに変更 */
     gap: 15px;
     z-index: 20;
 }
@@ -113,7 +117,7 @@ body {
 }
 .sns-link-item:hover i, .sns-link-item:hover img {
     transform: scale(1.2);
-    filter: drop-shadow(0 0 10px var(--y2k-green));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); /* ホバーエフェクトを白に */
 }
 .sns-link-item img {
     object-fit: contain;
@@ -129,16 +133,16 @@ body {
     height: 180px;
     z-index: 15;
 }
-.y2k-frame {
+.youtube-frame {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 2px solid var(--y2k-green);
-    box-shadow: 0 0 15px var(--y2k-green);
+    border: 2px solid #333;
+    background-color: #000;
     overflow: hidden;
     border-radius: 10px;
 }
-.y2k-frame iframe {
+.youtube-frame iframe {
     width: 100%;
     height: 100%;
     display: block;
@@ -151,7 +155,7 @@ body {
     left: 50px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--y2k-green);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     z-index: 5;
 }
 
@@ -179,6 +183,5 @@ body {
     }
     .mobile-only {
         display: block;
-        /* モバイル版のスタイルをここに記述 */
     }
 }
