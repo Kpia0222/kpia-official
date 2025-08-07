@@ -9,18 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function activateGlitch() {
-        document.body.classList.add('glitch-on');
-        
-        const glitchDuration = Math.random() * 400 + 100;
-        
-        setTimeout(() => {
-            document.body.classList.remove('glitch-on');
-        }, glitchDuration);
+    function createGlitchPart() {
+        const glitchElement = document.createElement('div');
+        glitchElement.classList.add('glitch-part');
 
-        const nextGlitchTime = (Math.random() * 4.5 + 0.5) * 1000;
-        setTimeout(activateGlitch, nextGlitchTime);
+        // ランダムな位置とサイズ
+        const size = Math.random() * 150 + 50; // 50pxから200px
+        const top = Math.random() * window.innerHeight;
+        const left = Math.random() * window.innerWidth;
+
+        glitchElement.style.width = `${size}px`;
+        glitchElement.style.height = `${size}px`;
+        glitchElement.style.top = `${top}px`;
+        glitchElement.style.left = `${left}px`;
+
+        // ランダムな表示時間
+        const duration = Math.random() * 300 + 100; // 100msから400ms
+
+        document.body.appendChild(glitchElement);
+
+        setTimeout(() => {
+            glitchElement.remove();
+        }, duration);
     }
 
-    activateGlitch();
+    // ランダムな間隔でグリッチを発生させる
+    function startGlitchStorm() {
+        setInterval(createGlitchPart, Math.random() * 500 + 100); // 100msから600msの間隔
+    }
+
+    startGlitchStorm();
 });
