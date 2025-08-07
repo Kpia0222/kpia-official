@@ -48,10 +48,6 @@ body::before {
     flex-direction: column;
     align-items: center;
     margin-bottom: 0;
-    
-    border: 2px solid 
-    display: inline-block;
-    
 }
 
 .artist-logo-container {
@@ -77,8 +73,10 @@ body::before {
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     margin: 0;
-    color: #ffffff;
     z-index: 1;
+    
+    border: 2px solid 
+    display: inline-block;
 }
 
 .profile-section {
