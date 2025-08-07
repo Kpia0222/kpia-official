@@ -79,10 +79,12 @@ body::before {
 
 .profile-section {
     margin-top: 0;
-    margin-bottom: 0.5rem; /* リンクセクションとの間に少しだけ余白 */
+    margin-bottom: 0.5rem;
     padding: 1rem;
     border-radius: 10% / 50%;
     text-align: center;
+    border: 2px solid /*var(--text-light)*/;
+    display: inline-block;
 }
 
 .profile-section p {
