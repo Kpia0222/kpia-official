@@ -6,6 +6,7 @@
     --accent-color-2: #ff00ff; /* グリッチの2色目 */
     --glitch-animation-speed: 0.5s;
     --glitch-text-shadow-size: 2px;
+    --glitch-shift-size: 5px;
 }
 
 /* 全体設定 */
@@ -37,42 +38,25 @@ body::before {
     z-index: -2;
 }
 
-/* ブラウン管ノイズ */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,0.2) 0,
-        rgba(0,0,0,0.2) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none;
-    z-index: -1;
-    /* --- ここを修正：アニメーションの持続時間を短くする --- */
-    animation: crt-glitch 1s infinite;
+.glitch-on {
+    filter: grayscale(1) hue-rotate(360deg);
 }
 
-/* 新しいアニメーションキーフレーム */
-@keyframes crt-glitch {
-    0%, 95% {
-        opacity: 0; /* 通常時は非表示 */
-        filter: grayscale(0);
-    }
-    95.1%, 100% {
-        opacity: 0.8; /* 最後の0.1%で表示 */
-        filter: grayscale(1);
-    }
+.glitch-on::before {
+    animation: rgb-shift-anim 0.2s infinite steps(2, jump-none);
 }
 
-/* style.cssに追記 */
-.glitch-on::after {
-    animation: crt-glitch 0.3s forwards; /* ノイズの持続時間を短く設定 */
+@keyframes rgb-shift-anim {
+    0% {
+        transform: translate(0, 0);
+        filter: drop-shadow(var(--glitch-shift-size) 0 0 var(--accent-color-1))
+                drop-shadow(calc(var(--glitch-shift-size) * -1) 0 0 var(--accent-color-2));
+    }
+    100% {
+        transform: translate(calc(var(--glitch-shift-size) * -1), 0);
+        filter: drop-shadow(calc(var(--glitch-shift-size) * -1) 0 0 var(--accent-color-1))
+                drop-shadow(var(--glitch-shift-size) 0 0 var(--accent-color-2));
+    }
 }
 
 /* ヘッダー */
