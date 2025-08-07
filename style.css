@@ -38,12 +38,16 @@ body::before {
     z-index: -2;
 }
 
-.glitch-on {
-    /* filter: grayscale(1) hue-rotate(360deg);  この行を削除 */
-}
-
-.glitch-on::before {
-    animation: rgb-shift-anim 0.2s infinite steps(2, jump-none);
+/* RGBシフトノイズをかける要素の基本スタイル */
+.glitch-part {
+    position: absolute;
+    background-image: url('kpia_live_00.png'); /* 背景画像を継承 */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    z-index: 10; /* 他のコンテンツより前面に */
+    animation: rgb-shift-anim 0.1s infinite steps(2, jump-none);
+    mix-blend-mode: screen; /* 重なった部分を明るく合成 */
 }
 
 @keyframes rgb-shift-anim {
