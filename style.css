@@ -43,7 +43,7 @@ body::before {
     margin: 0 auto;
 }
 
-.artist-name {
+.name-content {
     font-family: 'Roboto Mono', monospace;
     font-size: 3rem;
     text-transform: uppercase;
