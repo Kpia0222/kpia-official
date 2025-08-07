@@ -54,8 +54,8 @@ body::after {
     );
     pointer-events: none;
     z-index: -1;
-    /* 新しいアニメーションを追加 */
-    animation: crt-glitch 10s infinite;
+    /* --- ここを修正：アニメーションの持続時間を短くする --- */
+    animation: crt-glitch 1s infinite;
 }
 
 /* 新しいアニメーションキーフレーム */
