@@ -60,20 +60,19 @@ body::before {
     object-fit: cover;
 }
 
-.name-content p {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 3rem;
+.name-section {
+    font-family: 'Playfair Display', serif; /* pタグと同じフォント */
+    line-height: 1.6; /* pタグと同じ行の高さ */
+    margin: 0; /* pタグと同じマージン */
+    
+    font-size: 3rem; /* 既存のフォントサイズを維持 */
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-    margin: 0;
-    z-index: 1;
-    
-    /* ここから枠線のCSSを追加 */
-    border: 2px solid var(--text-light); /* 2pxの白い実線 */
-    display: inline-block; /* コンテンツの幅に合わせて要素の幅を調整 */
-    padding: 0.5rem 1.5rem; /* 枠と文字の間に余白を追加 */
-    border-radius: 8px; /* 角を丸くする */
-    margin-bottom: 2rem; /* プロフィールセクションとの間に間隔をあける */
+    padding: 0.5rem 1.5rem;
+    border: 2px solid var(--text-light);
+    display: inline-block;
+    border-radius: 8px;
+    margin-bottom: 2rem;
 }
 
 .profile-section {
