@@ -5,7 +5,7 @@
     --y2k-green: #7fff00;
     --bg-dark: #1a1a1a;
     --text-light: #f0f0f0;
-    --logo-size: 300px; /* アイコンのサイズをここから調整可能 */
+    --logo-size: 25vw; /* アイコンのサイズをここから調整可能 */
 }
 
 body {
@@ -37,6 +37,7 @@ body {
     background-image: url('kpia_live_00.png');
     background-size: cover;
     background-position: center;
+    filter: blur(10px) contrast(100%) saturate(300%);
     z-index: -1;
 }
 
@@ -127,7 +128,7 @@ body {
 .youtube-wipe-container {
     position: fixed;
     top: 50%;
-    right: 20px;
+    right: 5vw;
     transform: translateY(-50%);
     width: 320px;
     height: 180px;
