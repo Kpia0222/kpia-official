@@ -1,340 +1,116 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kpia — Artist Homepage</title>
-  <meta name="description" content="Kpia — Y2K / hyperpop / anime-culture inspired artist homepage" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kpia" />
-  <meta property="og:description" content="New single out now. Follow on SoundCloud, YouTube, X, NicoNico, Instagram, TikTok." />
-  <meta property="og:image" content="/assets/og-image.png" />
-  <meta name="theme-color" content="#c7d2ff" />
-
-  <!-- Fonts: Montserrat (latin), Noto Sans JP (JP) -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg: #0b0a10;
-      --text: #f7f7ff;
-      --muted: #bfbfde;
-      --accent: #e56bff;
-      --accent-2: #7ed2ff;
-      --glass: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.16);
-      --shadow: 0 12px 36px rgba(0,0,0,0.45);
-      --header-h: 68px;
-      --mercury-speed: 18s;
-      --glitch-frequency: 3000; /* ms */
-    }
-
-    /* Base reset */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%; margin:0}
-    body{font-family:'Noto Sans JP', Montserrat, system-ui; background:var(--bg); color:var(--text); overflow-x:hidden}
-    a{color:inherit}
-
-    /* Ensure header always visible */
-    header{position:fixed; top:0; left:0; right:0; height:var(--header-h); z-index:200; display:flex; align-items:center;}
-
-    /* Header metallic glass that matches drawer */
-    .header-frame{position:relative; width:100%; padding:10px clamp(14px,3vw,28px); display:flex; align-items:center; justify-content:space-between; gap:12px}
-    .header-frame::before{content:""; position:absolute; inset:0; border-radius:0; pointer-events:none;
-      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-      backdrop-filter: blur(8px) saturate(1.2); mix-blend-mode:overlay;}
-    .header-metal{position:absolute; inset:0; background:conic-gradient(from 0deg, #e6edf7, #6b7c93, #b8c6db, #303546); opacity:.16; pointer-events:none;}
-    .nav{position:relative; width:100%; display:flex; align-items:center; gap:12px}
-
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand-logo{width:44px; height:44px; border-radius:10px; overflow:hidden; flex:0 0 44px; background:linear-gradient(135deg,#7ed2ff,#e56bff); display:grid; place-items:center}
-    .brand-logo img{width:100%; height:100%; object-fit:cover}
-    .brand-title{font-weight:800; font-family:Montserrat, system-ui; letter-spacing:.04em}
-
-    /* Header menu items displayed always */
-    .header-links{display:flex; gap:8px; align-items:center}
-    .header-links a{padding:8px 12px; border-radius:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); font-weight:700}
-
-    .sns-share{display:flex; gap:8px}
-    .hamburger{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); cursor:pointer}
-    .hamburger span{width:22px; height:2px; background:var(--text); position:relative; display:block}
-    .hamburger span::before,.hamburger span::after{content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text)}
-    .hamburger span::before{top:-7px}
-    .hamburger span::after{top:7px}
-    .hamburger.active span{background:transparent}
-    .hamburger.active span::before{transform:translateY(7px) rotate(45deg)}
-    .hamburger.active span::after{transform:translateY(-7px) rotate(-45deg)}
-
-    /* Background and mercury effect */
-    .bg-wrap{position:fixed; inset:0; z-index:-50; overflow:hidden}
-    .bg-img{position:absolute; inset:0; background-size:cover; background-position:center; transition:filter 600ms ease;}
-    .bg-frost{position:absolute; inset:0; backdrop-filter: blur(6px); background:rgba(8,8,12,0.24); mix-blend-mode:normal}
-
-    /* Mercury: layered SVG-like moving gradients + displacement illusion */
-    .mercury{position:absolute; inset:-10%; pointer-events:none; mix-blend-mode:screen; opacity:.95}
-    .mercury .blob{position:absolute; border-radius:50%; filter:blur(26px); opacity:.95}
-    .mercury .b1{width:80vmax; height:80vmax; left:-20vmax; top:-15vmax; background:radial-gradient(circle at 40% 40%, rgba(230,237,247,.25), rgba(124,135,150,.04)); animation: move1 var(--mercury-speed) linear infinite}
-    .mercury .b2{width:70vmax; height:70vmax; right:-18vmax; top:2vmax; background:radial-gradient(circle at 60% 40%, rgba(126,210,255,.14), rgba(229,107,255,.12)); animation: move2 calc(var(--mercury-speed) * 1.2) linear infinite}
-    .mercury .b3{width:60vmax; height:60vmax; left:12vmax; bottom:-18vmax; background:radial-gradient(circle at 20% 60%, rgba(255,251,143,.12), rgba(126,210,255,.06)); animation: move3 calc(var(--mercury-speed) * .9) linear infinite}
-    @keyframes move1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,2%) scale(1.02)}100%{transform:translate(0,0) scale(1)}}
-    @keyframes move2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-2%,3%) scale(.98)}100%{transform:translate(0,0) scale(1)}}
-    @keyframes move3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(1%,-2%) scale(1.01)}100%{transform:translate(0,0) scale(1)}}
-
-    /* Water-floating motion for bg image */
-    .bg-img{animation: floatBg 16s ease-in-out infinite}
-    @keyframes floatBg{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.01)}100%{transform:translateY(0) scale(1)}}
-
-    /* Glitch area (only part of background) */
-    .bg-glitch-area{position:absolute; right:6%; top:12%; width:28%; height:22%; pointer-events:none; mix-blend-mode:screen; overflow:hidden}
-    .bg-glitch-area::before{content:""; position:absolute; inset:0; background:inherit; filter:contrast(1.4) saturate(1.6); transform:translateZ(0);} 
-    .bg-glitch-active{filter: hue-rotate(8deg) saturate(1.6) contrast(1.2) drop-shadow(0 0 18px rgba(255,0,120,.12)); transform:translateX(6px);}
-
-    /* Hero & logo */
-    .hero{min-height:100vh; display:grid; place-items:center; padding-top:calc(var(--header-h) + 24px)}
-    .logo-wrap{position:relative; perspective:1400px}
-    .artist-logo{width:min(48vw, 420px); max-width:460px; transition:transform .18s linear, opacity .6s ease; transform-style:preserve-3d}
-    .spin{animation:spinY 10s linear infinite}
-    @keyframes spinY{to{transform:rotateY(360deg)}}
-
-    /* Pointer-centered lens fixed to viewport to avoid misplacement */
-    .lens{position:fixed; width:200px; height:200px; border-radius:50%; pointer-events:none; display:none; border:1px solid rgba(255,255,255,.18); box-shadow:0 12px 32px rgba(0,0,0,.6); overflow:hidden; background-repeat:no-repeat; background-size:200% 200%}
-
-    /* Sections */
-    main{position:relative; z-index:50}
-    .section{max-width:1200px; margin:40px auto; padding:36px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:18px; padding:18px; border:1px solid rgba(255,255,255,0.04);}
-
-    /* Drawer panel uses same header appearance */
-    .drawer{position:fixed; inset:0; z-index:220; display:none}
-    .drawer.open{display:block}
-    .drawer .overlay{position:absolute; inset:0; background:rgba(0,0,0,0.45)}
-    .drawer .panel{position:absolute; right:0; top:0; height:100%; width:min(86vw,420px); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-left:1px solid rgba(255,255,255,0.04); box-shadow:0 18px 60px rgba(0,0,0,.6); transform:translateX(100%); transition:transform .42s cubic-bezier(.2,.9,.3,1);}
-    .drawer.open .panel{transform:translateX(0)}
-    .panel .panel-inner{padding:24px}
-    .panel a{display:block; margin-bottom:12px; padding:12px; border-radius:12px; background:rgba(255,255,255,0.02); font-weight:700}
-
-    /* Responsive */
-    @media(min-width:900px){
-      .header-links{display:flex}
-      .hamburger{display:none}
-    }
-    @media(max-width:899px){
-      .header-links{display:none}
-      .brand-title{font-size:14px}
-    }
-
-    footer{padding:48px 18px; text-align:center; color:var(--muted)}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kpia Official Site</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Background -->
-  <div class="bg-wrap" aria-hidden="true">
-    <div id="bg" class="bg-img" style="background-image: url('/assets/bg.png');"></div>
-    <div class="bg-frost"></div>
 
-    <!-- Mercury layers -->
-    <div class="mercury" aria-hidden="true">
-      <div class="blob b1"></div>
-      <div class="blob b2"></div>
-      <div class="blob b3"></div>
+<!-- 流体背景用キャンバス -->
+<div id="fluidCanvas"></div>
+
+<!-- モザイク背景 -->
+<div class="bg-wrap">
+  <div class="bg-img" id="bg"></div>
+</div>
+
+<header>
+  <div class="nav">
+    <div class="brand-logo"></div>
+    <div class="brand-name">Kpia</div>
+    <div class="sns-share">
+      <button id="shareBtn" class="btn">共有</button>
     </div>
-
-    <!-- small region for RGB glitch -->
-    <div id="bgGlitch" class="bg-glitch-area" aria-hidden="true"></div>
-  </div>
-
-  <!-- Header (fixed) -->
-  <header>
-    <div class="header-frame">
-      <nav class="nav">
-        <div class="brand">
-          <div class="brand-logo"><img id="brandIcon" src="/assets/icon.png" alt="Kpia icon" onerror="this.style.display='none'"/></div>
-          <div>
-            <div class="brand-title">Kpia</div>
-            <div style="font-size:11px;color:var(--muted);">Y2K · hyperpop · anime</div>
-          </div>
-        </div>
-
-        <div class="header-links">
-          <a href="#news">最新情報</a>
-          <a href="#socials">SNS</a>
-          <a href="#discography">ディスコグラフィ</a>
-          <a href="#live">ライブ</a>
-          <a href="#merch">グッズ</a>
-          <a href="#gallery">ギャラリー</a>
-          <a href="#about">プロフィール</a>
-          <a href="#contact">お問い合わせ</a>
-        </div>
-      </nav>
-
-      <div style="display:flex;align-items:center;gap:10px">
-        <div class="sns-share">
-          <button id="shareBtn" class="btn">共有</button>
-        </div>
-        <button id="hamburger" class="hamburger" aria-label="メニューを開く"><span></span></button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Drawer panel (reuses header look) -->
-  <div id="drawer" class="drawer" role="dialog" aria-modal="true">
-    <div class="overlay" data-close></div>
-    <div class="panel" role="menu">
-      <div class="panel-inner">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-          <div class="brand-logo"><img id="brandIconPanel" src="/assets/icon.png" alt="Kpia icon" onerror="this.style.display='none'"/></div>
-          <div style="font-weight:800">Kpia</div>
-        </div>
-        <a href="#news" data-close>最新情報</a>
-        <a href="#socials" data-close>SNSリンク</a>
-        <a href="#discography" data-close>ディスコグラフィ</a>
-        <a href="#live" data-close>ライブ / スケジュール</a>
-        <a href="#merch" data-close>グッズ / ショップ</a>
-        <a href="#gallery" data-close>ギャラリー</a>
-        <a href="#about" data-close>プロフィール</a>
-        <a href="#contact" data-close>お問い合わせ</a>
-      </div>
+    <div id="hamburger" class="hamburger" aria-label="メニュー" aria-expanded="false">
+      <span></span>
     </div>
   </div>
+</header>
 
-  <!-- Hero -->
-  <main>
-    <section class="hero" id="top">
-      <div class="logo-wrap">
-        <img id="artistLogo" class="artist-logo spin" src="/assets/logo.png" alt="Kpia Logo">
-        <div id="lens" class="lens" aria-hidden="true"></div>
-      </div>
-    </section>
+<div class="drawer" id="drawer">
+  <div class="overlay" data-close="true"></div>
+  <div class="panel">
+    <header><h3 style="padding:14px;">メニュー</h3></header>
+    <div class="menu">
+      <a href="index.html" data-close="true">ホーム</a>
+      <a href="profile.html" data-close="true">プロフィール</a>
+      <a href="#latest" data-close="true">最新情報</a>
+      <a href="#contact" data-close="true">お問い合わせ</a>
+    </div>
+  </div>
+</div>
 
-    <section id="news" class="section">
-      <h2>最新情報</h2>
-      <div class="card">
-        <p><time datetime="2025-08-10">2025/08/10</time> New Single "CYBER SODA" out now!</p>
-      </div>
-    </section>
+<main class="hero">
+  <div class="logo-wrap">
+    <img src="/assets/logo.png" alt="アーティストロゴ" class="artist-logo" id="artistLogo">
+    <div class="scroll-hint"><span class="chev"></span></div>
+  </div>
+</main>
 
-    <section id="socials" class="section">
-      <h2>SNSリンク</h2>
-      <div class="card">リンク集（SoundCloud / YouTube / X / ニコニコ / Instagram / TikTok）</div>
-    </section>
+<section class="section" id="latest">
+  <h2>最新情報</h2>
+  <div class="card">
+    <p>ここに新曲リリース情報やイベント情報を掲載します。</p>
+  </div>
+</section>
 
-    <section id="discography" class="section"><h2>ディスコグラフィ</h2><div class="card">Coming soon</div></section>
-    <section id="live" class="section"><h2>ライブ</h2><div class="card">Next: 2025/09/01</div></section>
-    <section id="merch" class="section"><h2>グッズ</h2><div class="card">Soon</div></section>
-    <section id="gallery" class="section"><h2>ギャラリー</h2><div class="card">Photos & visuals</div></section>
-    <section id="about" class="section"><h2>プロフィール</h2><div class="card">Kpia — Y2K/hyperpop</div></section>
+<section class="section socials">
+  <h2>SNSリンク</h2>
+  <a href="https://soundcloud.com/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/145/145809.png" width="24" alt="SoundCloud"> SoundCloud
+  </a>
+  <a href="https://www.youtube.com/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24" alt="YouTube"> YouTube
+  </a>
+  <a href="https://twitter.com/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="24" alt="X"> X
+  </a>
+  <a href="https://www.nicovideo.jp/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="24" alt="ニコニコ動画"> ニコニコ
+  </a>
+  <a href="https://www.instagram.com/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="24" alt="Instagram"> Instagram
+  </a>
+  <a href="https://www.tiktok.com/" target="_blank" class="chip">
+    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" width="24" alt="TikTok"> TikTok
+  </a>
+</section>
 
-    <section id="contact" class="section"><h2>お問い合わせ</h2>
-      <div class="card"><form onsubmit="alert('送信しました（デモ）。');return false"><input placeholder="name" style="width:100%;padding:10px;margin-bottom:8px"><input placeholder="email" style="width:100%;padding:10px;margin-bottom:8px"><textarea placeholder="message" style="width:100%;padding:10px"></textarea><div style="margin-top:10px"><button class="btn">送信</button></div></form></div>
-    </section>
-  </main>
+<script src="script.js"></script>
+<script>
+// 流体背景（index.html用）
+const canvas=document.createElement('canvas');
+canvas.style.position='fixed';
+canvas.style.top='0';
+canvas.style.left='0';
+canvas.style.width='100%';
+canvas.style.height='100%';
+canvas.style.zIndex='-3';
+document.body.appendChild(canvas);
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+window.addEventListener('resize',resize);resize();
+let t=0;
+function animate(){
+  t+=0.01;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<12;i++){
+    const x=canvas.width*Math.random();
+    const y=canvas.height*Math.random();
+    const r=60+40*Math.sin(t+i);
+    const gradient=ctx.createRadialGradient(x,y,0,x,y,r);
+    gradient.addColorStop(0,'rgba(229,107,255,0.35)');
+    gradient.addColorStop(1,'rgba(126,210,255,0)');
+    ctx.fillStyle=gradient;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
 
-  <footer><div style="text-align:center;color:var(--muted);padding:36px">© <span id="year"></span> Kpia</div></footer>
-
-  <script>
-    // Elements
-    const bg = document.getElementById('bg');
-    const bgGlitch = document.getElementById('bgGlitch');
-    const logo = document.getElementById('artistLogo');
-    const lens = document.getElementById('lens');
-    const hamburger = document.getElementById('hamburger');
-    const drawer = document.getElementById('drawer');
-
-    // Header behavior: always visible; ensure body padding to not cover content
-    document.documentElement.style.setProperty('--header-h', '68px');
-    document.body.style.paddingTop = 'calc(var(--header-h) + 6px)';
-
-    // Asset placeholders handled by browser; ensure brand icons hide if missing
-
-    // Drawer open/close
-    const toggleDrawer = (open)=>{
-      drawer.classList.toggle('open', open);
-      hamburger.classList.toggle('active', open);
-      if(open){ document.body.style.overflow='hidden'; } else { document.body.style.overflow=''; }
-    };
-    hamburger.addEventListener('click', ()=> toggleDrawer(!drawer.classList.contains('open')));
-    drawer.addEventListener('click', (e)=>{ if(e.target.hasAttribute('data-close') || e.target.classList.contains('overlay')) toggleDrawer(false); });
-
-    // Close drawer and smooth-scroll when menu links clicked
-    drawer.querySelectorAll('a[data-close]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        e.preventDefault(); const href = a.getAttribute('href'); toggleDrawer(false);
-        setTimeout(()=>{ document.querySelector(href)?.scrollIntoView({behavior:'smooth'}); }, 300);
-      });
-    });
-
-    // Header links also smooth scroll
-    document.querySelectorAll('.header-links a').forEach(a=>{ a.addEventListener('click', (e)=>{ e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'}); }); });
-
-    // Logo spin behavior already via CSS. Speed up on hover/touch
-    logo.addEventListener('pointerenter', ()=>{ logo.style.animationDuration = '4.5s'; });
-    logo.addEventListener('pointerleave', ()=>{ logo.style.animationDuration = '10s'; logo.style.transform = ''; logo.style.transformOrigin = ''; });
-
-    // Pointer-centered magnifier / hover-zoom for PC
-    (function(){
-      const radius = 100; // px
-      let pressing = false;
-      // lens is fixed to viewport to avoid misplacement
-      function setLensImage(){ lens.style.backgroundImage = `url('${logo.src}')`; lens.style.backgroundSize = `${logo.width*2}px ${logo.height*2}px`; }
-
-      function showLens(x,y){ lens.style.left = (x - radius) + 'px'; lens.style.top = (y - radius) + 'px'; lens.style.display = 'block'; }
-      function hideLens(){ lens.style.display = 'none'; }
-
-      // Pointer interactions
-      logo.addEventListener('pointerdown', (e)=>{ pressing=true; setLensImage(); showLens(e.clientX, e.clientY); e.preventDefault(); });
-      window.addEventListener('pointerup', ()=>{ pressing=false; hideLens(); });
-      logo.addEventListener('pointermove', (e)=>{
-        // hover-zoom: for desktop pointer proximity
-        const rect = logo.getBoundingClientRect(); const cx = rect.left + rect.width/2; const cy = rect.top + rect.height/2;
-        const dx = e.clientX - cx; const dy = e.clientY - cy; const dist = Math.hypot(dx,dy);
-        const threshold = Math.max(rect.width, rect.height) * 0.6;
-        if(dist < threshold){
-          const scale = 1 + (1 - (dist/threshold)) * 0.28; // up to ~1.28x
-          const bx = ((e.clientX - rect.left) / rect.width) * 100; const by = ((e.clientY - rect.top) / rect.height) * 100;
-          logo.style.transformOrigin = `${bx}% ${by}%`;
-          logo.style.transform = `scale(${scale})`;
-        } else {
-          logo.style.transform = '';
-          logo.style.transformOrigin='50% 50%';
-        }
-
-        if(pressing){ setLensImage(); showLens(e.clientX, e.clientY); const rect = logo.getBoundingClientRect(); const bx = ((e.clientX - rect.left) / rect.width) * 100; const by = ((e.clientY - rect.top) / rect.height) * 100; lens.style.backgroundPosition = `${bx}% ${by}%`; }
-      });
-
-      // Touch support
-      logo.addEventListener('touchstart', (e)=>{ setLensImage(); const t = e.touches[0]; showLens(t.clientX, t.clientY); }, {passive:false});
-      logo.addEventListener('touchmove', (e)=>{ const t = e.touches[0]; setLensImage(); showLens(t.clientX, t.clientY); const rect = logo.getBoundingClientRect(); const bx = ((t.clientX - rect.left) / rect.width) * 100; const by = ((t.clientY - rect.top) / rect.height) * 100; lens.style.backgroundPosition = `${bx}% ${by}%`; }, {passive:false});
-      window.addEventListener('touchend', ()=> hideLens());
-
-    })();
-
-    // Glitch: only toggle class on bgGlitch area at intervals to create RGB glitch bursts
-    (function bgGlitchRoutine(){
-      function trigger(){
-        bgGlitch.classList.add('bg-glitch-active');
-        setTimeout(()=> bgGlitch.classList.remove('bg-glitch-active'), 220 + Math.random()*200);
-      }
-      setInterval(()=>{ if(Math.random() < 0.6) trigger(); }, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--glitch-frequency')) || 3000);
-    })();
-
-    // Ensure anchors and header don't get covered: scroll-margin is set in CSS, but ensure immediate jumps also offset
-    function scrollToHashOnLoad(){ if(location.hash){ const el = document.querySelector(location.hash); if(el){ setTimeout(()=> el.scrollIntoView({behavior:'smooth'}), 80); } } }
-    window.addEventListener('load', scrollToHashOnLoad);
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Respect reduced motion
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(mq.matches){ document.querySelectorAll('.spin').forEach(el=> el.style.animation='none'); document.querySelectorAll('.mercury .blob').forEach(b=> b.style.animation='none'); }
-  </script>
-
-  <!-- Notes for deployment:
-       - Put your images in /assets:
-         - /assets/bg.png  (background image)
-         - /assets/logo.png (artist logo)
-         - /assets/icon.png (left-top brand icon)
-       - When you upload to GitHub Pages, split into index.html / css / js if you want.
-  -->
 </body>
 </html>
