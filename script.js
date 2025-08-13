@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     // スクロール時のヘッダーアニメーション (変更なし)
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
