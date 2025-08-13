@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アーティストプロフィール</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- 流体背景用キャンバス -->
+<div id="fluidCanvas"></div>
+
+<header>
+  <div class="nav">
+    <div class="brand-logo"></div>
+    <div class="brand-name">Kpia</div>
+    <div id="hamburger" class="hamburger" aria-label="メニュー" aria-expanded="false">
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <div class="overlay" data-close="true"></div>
+  <div class="panel">
+    <header><h3 style="padding:14px;">メニュー</h3></header>
+    <div class="menu">
+      <a href="index.html" data-close="true">ホーム</a>
+      <a href="profile.html" data-close="true">プロフィール</a>
+      <a href="#contact" data-close="true">お問い合わせ</a>
+    </div>
+  </div>
+</div>
+
+<main class="hero">
+  <div class="logo-wrap">
+    <img src="/assets/logo.png" alt="アーティストロゴ" class="artist-logo show">
+    <h2 style="margin-top:24px;font-size:16px;">Kpia Profile</h2>
+  </div>
+
+  <div class="section socials" style="margin-top:36px;">
+    <a href="https://soundcloud.com/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/145/145809.png" width="24" alt="SoundCloud"> SoundCloud
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24" alt="YouTube"> YouTube
+    </a>
+    <a href="https://twitter.com/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="24" alt="X"> X
+    </a>
+    <a href="https://www.nicovideo.jp/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="24" alt="ニコニコ動画"> ニコニコ
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="24" alt="Instagram"> Instagram
+    </a>
+    <a href="https://www.tiktok.com/" target="_blank" class="chip">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" width="24" alt="TikTok"> TikTok
+    </a>
+  </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+// プロフィールページ用の流体背景
+const canvas=document.createElement('canvas');
+canvas.style.position='fixed';
+canvas.style.top='0';
+canvas.style.left='0';
+canvas.style.width='100%';
+canvas.style.height='100%';
+canvas.style.zIndex='-3';
+document.body.appendChild(canvas);
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+window.addEventListener('resize',resize);resize();
+let t=0;
+function animate(){
+  t+=0.01;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=0;i<12;i++){
+    const x=canvas.width*Math.random();
+    const y=canvas.height*Math.random();
+    const r=60+40*Math.sin(t+i);
+    const gradient=ctx.createRadialGradient(x,y,0,x,y,r);
+    gradient.addColorStop(0,'rgba(229,107,255,0.35)');
+    gradient.addColorStop(1,'rgba(126,210,255,0)');
+    ctx.fillStyle=gradient;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
