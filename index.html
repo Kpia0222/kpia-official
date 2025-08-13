@@ -57,18 +57,40 @@ body,html{width:100%;height:100%;overflow:hidden;font-family:'Arial',sans-serif;
 
 /* SNSアイコン */
 #sns{position:absolute;top:calc(50% + 120px);left:50%;transform:translateX(-50%);display:flex;gap:15px;}
-#sns a{width:50px;height:50px;display:flex;justify-content:center;align-items:center;transition:all 0.3s;}
-#sns img{width:100%;height:100%;border-radius:50%;animation:iconFloatSNS 4s ease-in-out infinite alternate;}
-#sns a:hover img{transform:scale(1.2) rotate(15deg);}
-@keyframes iconFloatSNS{
+#sns a{
+  width:50px;height:50px;
+  border-radius:50%;
+  background-color:rgba(255,255,255,0.12);
+  display:flex;justify-content:center;align-items:center;
+  transition:all 0.3s;
+  overflow:hidden;
+  position:relative;
+}
+#sns img{
+  width:70%; height:70%;
+  border-radius:50%;
+  position:absolute;
+}
+@media(max-width:767px){#sns{top:calc(50% + 100px);gap:10px;} #sns a{width:40px;height:40px;} #sns img{width:70%;height:70%;}}
+
+/* SNSアイコン揺れアニメーション */
+.snsFloat{
+  animation-name: floatAnim;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes floatAnim{
   0%{transform:translate(0,0);}
   25%{transform:translate(3px,-2px);}
   50%{transform:translate(-3px,2px);}
   75%{transform:translate(2px,-3px);}
   100%{transform:translate(0,0);}
 }
-@media(max-width:767px){#sns{top:calc(50% + 100px);gap:10px;} #sns a{width:40px;height:40px;}}
-
+#sns a:hover img{
+  transform:scale(1.2) rotate(15deg);
+}
 </style>
 </head>
 <body>
@@ -80,17 +102,13 @@ body,html{width:100%;height:100%;overflow:hidden;font-family:'Arial',sans-serif;
 <div id="icon" class="glitch"></div>
 
 <div id="sns">
-  <a href="#"><img src="assets/twitter.png" alt="Twitter"></a>
-  <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-  <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+  <a href="#"><img src="assets/twitter.png" class="snsFloat" alt="Twitter"></a>
+  <a href="#"><img src="assets/instagram.png" class="snsFloat" alt="Instagram"></a>
+  <a href="#"><img src="assets/youtube.png" class="snsFloat" alt="YouTube"></a>
 </div>
 
 <script>
 const icon=document.getElementById('icon');
-const canvas=document.getElementById('effectCanvas');
-const ctx=canvas.getContext('2d');
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
 
 // フェードイン
 window.addEventListener('load',()=>{
