@@ -3,114 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kpia Official Site</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Kpia Official</title>
+<style>
+  /* 共通リセット */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #111;
+  }
+
+  /* 背景 */
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/background.jpg') center/cover no-repeat;
+    filter: blur(8px) brightness(0.6);
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+
+  /* アイコン */
+  #icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    background: url('assets/logo.png') center/contain no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255,255,255,0.5);
+  }
+
+  /* 流体的動き用アニメーション */
+  @keyframes float {
+    0% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(20px); }
+    100% { transform: translate(-50%, -50%) translateY(0px); }
+  }
+
+  /* PC用 */
+  @media(min-width: 768px) {
+    #icon { width: 180px; height: 180px; }
+  }
+
+  /* スマホ用 */
+  @media(max-width: 767px) {
+    #icon { width: 120px; height: 120px; }
+  }
+</style>
 </head>
 <body>
+  <div id="background"></div>
+  <div id="icon"></div>
 
-<!-- 流体背景用キャンバス -->
-<div id="fluidCanvas"></div>
-
-<!-- モザイク背景 -->
-<div class="bg-wrap">
-  <div class="bg-img" id="bg"></div>
-</div>
-
-<header>
-  <div class="nav">
-    <div class="brand-logo"></div>
-    <div class="brand-name">Kpia</div>
-    <div class="sns-share">
-      <button id="shareBtn" class="btn">共有</button>
-    </div>
-    <div id="hamburger" class="hamburger" aria-label="メニュー" aria-expanded="false">
-      <span></span>
-    </div>
-  </div>
-</header>
-
-<div class="drawer" id="drawer">
-  <div class="overlay" data-close="true"></div>
-  <div class="panel">
-    <header><h3 style="padding:14px;">メニュー</h3></header>
-    <div class="menu">
-      <a href="index.html" data-close="true">ホーム</a>
-      <a href="profile.html" data-close="true">プロフィール</a>
-      <a href="#latest" data-close="true">最新情報</a>
-      <a href="#contact" data-close="true">お問い合わせ</a>
-    </div>
-  </div>
-</div>
-
-<main class="hero">
-  <div class="logo-wrap">
-    <img src="/assets/logo.png" alt="アーティストロゴ" class="artist-logo" id="artistLogo">
-    <div class="scroll-hint"><span class="chev"></span></div>
-  </div>
-</main>
-
-<section class="section" id="latest">
-  <h2>最新情報</h2>
-  <div class="card">
-    <p>ここに新曲リリース情報やイベント情報を掲載します。</p>
-  </div>
-</section>
-
-<section class="section socials">
-  <h2>SNSリンク</h2>
-  <a href="https://soundcloud.com/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/145/145809.png" width="24" alt="SoundCloud"> SoundCloud
-  </a>
-  <a href="https://www.youtube.com/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="24" alt="YouTube"> YouTube
-  </a>
-  <a href="https://twitter.com/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="24" alt="X"> X
-  </a>
-  <a href="https://www.nicovideo.jp/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="24" alt="ニコニコ動画"> ニコニコ
-  </a>
-  <a href="https://www.instagram.com/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="24" alt="Instagram"> Instagram
-  </a>
-  <a href="https://www.tiktok.com/" target="_blank" class="chip">
-    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" width="24" alt="TikTok"> TikTok
-  </a>
-</section>
-
-<script src="script.js"></script>
 <script>
-// 流体背景（index.html用）
-const canvas=document.createElement('canvas');
-canvas.style.position='fixed';
-canvas.style.top='0';
-canvas.style.left='0';
-canvas.style.width='100%';
-canvas.style.height='100%';
-canvas.style.zIndex='-3';
-document.body.appendChild(canvas);
-const ctx=canvas.getContext('2d');
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-window.addEventListener('resize',resize);resize();
-let t=0;
-function animate(){
-  t+=0.01;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let i=0;i<12;i++){
-    const x=canvas.width*Math.random();
-    const y=canvas.height*Math.random();
-    const r=60+40*Math.sin(t+i);
-    const gradient=ctx.createRadialGradient(x,y,0,x,y,r);
-    gradient.addColorStop(0,'rgba(229,107,255,0.35)');
-    gradient.addColorStop(1,'rgba(126,210,255,0)');
-    ctx.fillStyle=gradient;
-    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-  }
-  requestAnimationFrame(animate);
-}
-animate();
-</script>
+  // フェードイン
+  window.addEventListener('load', () => {
+    document.getElementById('background').style.opacity = '1';
+    document.getElementById('icon').style.opacity = '1';
 
+    // 流体的な動き
+    animateFloat();
+  });
+
+  const icon = document.getElementById('icon');
+
+  function animateFloat() {
+    let angle = 0;
+    let radius = 20; // 流体の動き幅
+    function float() {
+      angle += 0.02;
+      let x = Math.sin(angle) * radius;
+      let y = Math.cos(angle) * radius;
+      icon.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+      requestAnimationFrame(float);
+    }
+    float();
+  }
+
+  // マウス追従
+  document.addEventListener('mousemove', (e) => {
+    const rect = icon.getBoundingClientRect();
+    const iconX = rect.left + rect.width/2;
+    const iconY = rect.top + rect.height/2;
+    const dx = e.clientX - iconX;
+    const dy = e.clientY - iconY;
+    const distance = Math.sqrt(dx*dx + dy*dy);
+    const maxDistance = 150; // 影響範囲
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if(distance < maxDistance) {
+      const factor = (maxDistance - distance) / maxDistance;
+      offsetX = dx * 0.2 * factor;
+      offsetY = dy * 0.2 * factor;
+    }
+
+    icon.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
+  });
+</script>
 </body>
 </html>
